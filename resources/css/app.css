@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    thead,tbody,tr,td,th{
+        @apply border p-1.5 text-sm text-slate-600 px-2
+    }
+
+}
