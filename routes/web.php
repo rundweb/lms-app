@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Guru\GuruDashboardController;
@@ -22,19 +23,20 @@ Route::redirect('/', '/login');
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'loginUser']);
-Route::post('/logout',[AuthController::class,'destroy'])->middleware('auth');
+Route::post('/logout', [AuthController::class, 'destroy'])->middleware('auth');
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::middleware(['auth','role:admin'])->group(function(){
-    Route::get('/admin',AdminDashboardController::class);
-    Route::resource('/admin/user',UserController::class);
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin', AdminDashboardController::class);
+    Route::resource('/admin/user', UserController::class);
+    Route::resource('/admin/subject', SubjectController::class);
 });
 
-Route::middleware(['auth','role:guru'])->group(function(){
-    Route::get('/guru',GuruDashboardController::class);
+Route::middleware(['auth', 'role:guru'])->group(function () {
+    Route::get('/guru', GuruDashboardController::class);
 });
 
-Route::middleware(['auth','role:siswa'])->group(function(){
-    Route::get('/siswa',SiswaDashboardController::class);
+Route::middleware(['auth', 'role:siswa'])->group(function () {
+    Route::get('/siswa', SiswaDashboardController::class);
 });

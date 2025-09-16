@@ -63,17 +63,42 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
         //
+        return inertia('Admin/User/Edit', [
+            'title' => 'Edit Data',
+            'users' => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
         //
+
+        $rules = [
+            'name'=>'required',
+            'email'=>'required|unique:users,email,'. $user->id,
+            'role'=>'required'
+        ];
+
+        if($request->filled('password')){
+            $rules['password'] = 'confirmed|string|min:4';
+        }
+
+        $validate = $request->validate($rules);
+
+        if($request->filled('password')){
+            $validate['password']=Hash::make($validate['password']);
+        }
+
+        $user->update($validate);
+
+        return redirect('/admin/user')->with('success','Data updated successfully.');
+
     }
 
     /**

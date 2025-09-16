@@ -49,7 +49,7 @@ const SideBarComponents = () => {
         },
         {
             name: "Subjects",
-            path: "/subject",
+            path: "/admin/subject",
             icon: LuBookMarked,
             roles: ["admin", "guru", "siswa"],
         },

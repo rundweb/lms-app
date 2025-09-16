@@ -99,7 +99,8 @@ const Create = ({ title }) => {
                         )}
                     </div>
                     <div className="flex items-center gap-4">
-                        <label>Level :</label>
+                        <label className="text-sm font-medium text-slate-800">Level{" "}
+                            <span className="text-red-500">*{" "}</span>:</label>
                         <div className="flex items-center gap-4">
                             <div className="flex items-center gap-1">
                                 <input
@@ -110,7 +111,7 @@ const Create = ({ title }) => {
                                         setData("role", e.target.value)
                                     }
                                 />
-                                <label>Admin</label>
+                                <label className="text-sm font-medium text-slate-600">Admin</label>
                             </div>
                             <div className="flex items-center gap-1">
                                 <input
@@ -121,7 +122,7 @@ const Create = ({ title }) => {
                                         setData("role", e.target.value)
                                     }
                                 />
-                                <label>Guru</label>
+                                <label className="text-sm font-medium text-slate-600">Guru</label>
                             </div>
                             <div className="flex items-center gap-1">
                                 <input
@@ -132,7 +133,7 @@ const Create = ({ title }) => {
                                         setData("role", e.target.value)
                                     }
                                 />
-                                <label>Siswa</label>
+                                <label className="text-sm font-medium text-slate-600">Siswa</label>
                             </div>
                         </div>
                     </div>
@@ -150,9 +151,10 @@ const Create = ({ title }) => {
                         </Link>
                         <button
                             type="submit"
+                            disabled={processing}
                             className="bg-blue-500 border border-blue-500 p-2.5 text-sm tracking-wide rounded-md text-white px-3.5"
                         >
-                            Save Data
+                            {processing ? "Loading ..." : "Save Data"}
                         </button>
                     </div>
                 </form>
